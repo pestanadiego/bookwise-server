@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 
 const x = {
   development: {
@@ -23,4 +23,5 @@ const x = {
     dialect: process.env.DB_DIALECT,
   },
 };
+
 module.exports = x;
