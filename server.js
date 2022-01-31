@@ -1,3 +1,5 @@
+import hotelRoutes from "./routes/hotelRoutes";
+
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -12,7 +14,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-const hotelRoutes = require("./src/routes/hotelRoutes");
 app.use("/api/hotel", hotelRoutes);
 
 // Puerto
