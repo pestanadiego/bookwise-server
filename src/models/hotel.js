@@ -1,7 +1,7 @@
-const Sequelize = require("sequelize");
-const sequelize = require("../config/sequelize");
+const Sequelize = require('sequelize');
+const sequelize = require('../config/sequelize');
 
-const Hotel = sequelize.define("hotel", {
+const Hotel = sequelize.define('hotel', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,

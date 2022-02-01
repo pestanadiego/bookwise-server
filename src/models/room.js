@@ -2,13 +2,18 @@ const Sequelize = require("sequelize");
 const sequelize = require("../config/sequelize");
 
 const Room = sequelize.define("room", {
-  id_type: {
+  id: {
     type: Sequelize.INTEGER,
+    autoIncrement: true,
     allowNull: false,
     primaryKey: true,
   },
   name: {
     type: Sequelize.STRING,
+    allowNull: false,
+  },
+  type: {
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
   size: {
