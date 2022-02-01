@@ -47,10 +47,10 @@ const uniqueId = (length = 13) => {
   return result;
 };
 
-module.export = {
+module.exports = {
   uniqueId,
-  validateFields,
   validateEmail,
-  errorResponse,
+  validateFields,
   successResponse,
+  errorResponse,
 };

@@ -1,5 +1,5 @@
 const Hotel = require("../../models/hotel");
-const helpers = require("../../helpers/index");
+const { successResponse, errorResponse } = require("../../helpers/index");
 
 // CREATE
 const createHotel = async (req, res) => {
@@ -14,9 +14,9 @@ const createHotel = async (req, res) => {
       nro_hab: 0,
       active: true,
     });
-    return helpers.successResponse(req, res, hotel);
+    return successResponse(req, res, hotel);
   } catch (error) {
-    return console.log(error.message);
+    return errorResponse(req, res, error.message);
   }
 };
 
@@ -24,7 +24,7 @@ const createHotel = async (req, res) => {
 const getAllHotels = async (req, res) => {
   try {
     const hotels = await Hotel.findAll({
-      attributes: ["name", "address", "manager", "rating", "nro_hab"],
+      attributes: ["name_hotel", "address", "manager", "rating", "nro_hab"],
       where: { active: true },
     });
     return successResponse(req, res, hotels);

@@ -18,7 +18,7 @@ sequelize
   });
 
 sequelize
-  .sync({ force: false })
+  .sync({ force: true })
   .then((result) => {
     console.log(result);
   })
