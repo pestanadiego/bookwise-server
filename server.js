@@ -1,4 +1,4 @@
-import hotelRoutes from "./routes/hotelRoutes";
+const hotelRoutes = require("./src/routes/hotelRoutes");
 
 const express = require("express");
 const cors = require("cors");

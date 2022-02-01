@@ -1,10 +1,11 @@
-import Hotel from "../../models/hotel";
-import { successResponse, errorResponse } from "../helpers/index";
+const Hotel = require("../../models/hotel");
+const helpers = require("../../helpers/index");
 
 // CREATE
-export const createHotel = async (req, res) => {
+const createHotel = async (req, res) => {
   try {
     const { name_hotel, address, manager, rating } = req.body;
+    console.log(req.body);
     const hotel = await Hotel.create({
       name_hotel: name_hotel,
       address: address,
@@ -13,14 +14,14 @@ export const createHotel = async (req, res) => {
       nro_hab: 0,
       active: true,
     });
-    return successResponse(req, res, hotel);
+    return helpers.successResponse(req, res, hotel);
   } catch (error) {
-    return errorResponse(req, res, error.message);
+    return console.log(error.message);
   }
 };
 
 // GET ALL (READ)
-export const getAllHotels = async (req, res) => {
+const getAllHotels = async (req, res) => {
   try {
     const hotels = await Hotel.findAll({
       attributes: ["name", "address", "manager", "rating", "nro_hab"],
@@ -33,7 +34,7 @@ export const getAllHotels = async (req, res) => {
 };
 
 // GET ONE/MANY
-export const getManyHotels = async (req, res) => {
+const getManyHotels = async (req, res) => {
   try {
     const { name_hotel } = req.body;
     const hotels = await Hotel.findAll({
@@ -46,7 +47,7 @@ export const getManyHotels = async (req, res) => {
 };
 
 // UPDATE
-export const updateHotel = async (req, res) => {
+const updateHotel = async (req, res) => {
   try {
     const hotel = await Hotel.update(req.body, { where: { id: id } });
     return successResponse(req, res, hotel);
@@ -56,3 +57,10 @@ export const updateHotel = async (req, res) => {
 };
 
 // DELETE (LOGICO) *TO-DO*
+
+module.exports = {
+  createHotel,
+  updateHotel,
+  getManyHotels,
+  getAllHotels,
+};

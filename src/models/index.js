@@ -9,6 +9,15 @@ Hotel.hasMany(Room, {
 });
 
 sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Conectado");
+  })
+  .catch((err) => {
+    console.log("Error: " + err);
+  });
+
+sequelize
   .sync({ force: false })
   .then((result) => {
     console.log(result);
