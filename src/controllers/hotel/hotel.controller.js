@@ -1,4 +1,5 @@
 const Hotel = require("../../models/hotel");
+const Room = require("../../models/room");
 const { successResponse, errorResponse } = require("../../helpers/index");
 
 // CREATE
@@ -11,7 +12,6 @@ const createHotel = async (req, res) => {
       address: address,
       manager: manager,
       rating: rating,
-      nro_hab: 0,
       active: true,
     });
     return successResponse(req, res, hotel);
@@ -24,7 +24,14 @@ const createHotel = async (req, res) => {
 const getAllHotels = async (req, res) => {
   try {
     const hotels = await Hotel.findAll({
-      attributes: ["name_hotel", "address", "manager", "rating", "nro_hab"],
+      attributes: [
+        "id",
+        "name_hotel",
+        "address",
+        "manager",
+        "rating",
+        "active",
+      ],
       where: { active: true },
     });
     return successResponse(req, res, hotels);
@@ -49,6 +56,7 @@ const getManyHotels = async (req, res) => {
 // UPDATE
 const updateHotel = async (req, res) => {
   try {
+    let id = req.params.id;
     const hotel = await Hotel.update(req.body, { where: { id: id } });
     return successResponse(req, res, hotel);
   } catch (error) {
@@ -57,10 +65,20 @@ const updateHotel = async (req, res) => {
 };
 
 // DELETE (LOGICO) *TO-DO*
+const deleteLogicallyHotel = async (req, res) => {
+  try {
+    let id = req.params.id;
+    const hotel = await Hotel.update({ active: false }, { where: { id: id } });
+    return successResponse(req, res, hotel);
+  } catch (error) {
+    return errorResponse(req, res, error.message);
+  }
+};
 
 module.exports = {
   createHotel,
   updateHotel,
   getManyHotels,
   getAllHotels,
+  deleteLogicallyHotel,
 };

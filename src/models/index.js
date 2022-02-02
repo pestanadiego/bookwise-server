@@ -8,6 +8,11 @@ Hotel.hasMany(Room, {
   foreignKey: "id_hotel",
 });
 
+Room.belongsTo(Hotel, {
+  foreignKey: "id_hotel",
+});
+
+// Autenticación y sync
 sequelize
   .authenticate()
   .then(() => {
