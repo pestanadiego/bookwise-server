@@ -1,5 +1,6 @@
 const {
   createHotel,
+  getHotelById,
   getAllHotels,
   getManyHotels,
   updateHotel,
@@ -10,6 +11,7 @@ const router = require("express").Router();
 
 router.post("/createHotel", createHotel);
 router.get("/allHotels", getAllHotels);
+router.get("/searchHotel/:id", getHotelById);
 router.get("/manyHotels", getManyHotels);
 router.put("/:id", updateHotel);
 router.put("/delete/:id", deleteLogicallyHotel);

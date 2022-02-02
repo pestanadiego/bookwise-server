@@ -53,6 +53,19 @@ const getManyHotels = async (req, res) => {
   }
 };
 
+// GET BY Id
+const getHotelById = async (req, res) => {
+  let id = req.params.id;
+  try {
+    const hotel = await Hotel.findAll({
+      where: { id: id, active: true },
+    });
+    return successResponse(req, res, hotel);
+  } catch (error) {
+    return errorResponse(req, res, error.message);
+  }
+};
+
 // UPDATE
 const updateHotel = async (req, res) => {
   try {
@@ -78,6 +91,7 @@ const deleteLogicallyHotel = async (req, res) => {
 module.exports = {
   createHotel,
   updateHotel,
+  getHotelById,
   getManyHotels,
   getAllHotels,
   deleteLogicallyHotel,
