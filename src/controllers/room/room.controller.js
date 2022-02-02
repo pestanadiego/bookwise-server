@@ -5,11 +5,10 @@ const { successResponse, errorResponse } = require("../../helpers/index");
 // CREATE
 const createRoom = async (req, res) => {
   try {
-    const { name, type, size, num_bed, limit, quantity, id_hotel } = req.body;
+    const { name, size, num_bed, limit, quantity, id_hotel } = req.body;
     console.log(req.body);
     const room = await Room.create({
       name: name,
-      type: type,
       size: size,
       num_bed: num_bed,
       limit: limit,
