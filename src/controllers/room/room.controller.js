@@ -13,8 +13,8 @@ const createRoom = async (req, res) => {
       num_bed: num_bed,
       limit: limit,
       quantity: quantity,
-      active: true,
       id_hotel: id_hotel,
+      active: true,
     });
     return successResponse(req, res, room);
   } catch (error) {

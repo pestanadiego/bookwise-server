@@ -32,6 +32,10 @@ const Room = sequelize.define("room", {
     type: Sequelize.BOOLEAN,
     allowNull: false,
   },
+  id_hotel: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
 });
 
 module.exports = Room;
