@@ -24,7 +24,14 @@ const createHotel = async (req, res) => {
 const getAllHotels = async (req, res) => {
   try {
     const hotels = await Hotel.findAll({
-      attributes: ["name_hotel", "address", "manager", "rating", "nro_hab"],
+      attributes: [
+        "id",
+        "name_hotel",
+        "address",
+        "manager",
+        "rating",
+        "nro_hab",
+      ],
       where: { active: true },
     });
     return successResponse(req, res, hotels);
@@ -57,6 +64,12 @@ const updateHotel = async (req, res) => {
 };
 
 // DELETE (LOGICO) *TO-DO*
+const deleteHotel = async (req, res) => {
+  try {
+  } catch (error) {
+    return errorResponse(req, res, error.message);
+  }
+};
 
 module.exports = {
   createHotel,
