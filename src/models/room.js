@@ -12,10 +12,6 @@ const Room = sequelize.define("room", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  type: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
   size: {
     type: Sequelize.INTEGER,
     allowNull: false,
