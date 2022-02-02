@@ -44,8 +44,17 @@ const getAllHotels = async (req, res) => {
 const getManyHotels = async (req, res) => {
   try {
     const { name_hotel } = req.body;
+    const hotelName = name_hotel.toLowerCase();
+
     const hotels = await Hotel.findAll({
-      where: { name_hotel: name_hotel, active: true },
+      where: {
+        name_hotel: sequelize.where(
+          sequelize.fn("LOWER", sequelize.col("name_hotel")),
+          "LIKE",
+          "%" + hotelName + "%"
+        ),
+        active: true,
+      },
     });
     return successResponse(req, res, hotels);
   } catch (error) {
