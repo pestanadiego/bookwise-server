@@ -30,7 +30,6 @@ const getAllRooms = async (req, res) => {
       attributes: [
         "id",
         "name",
-        "type",
         "size",
         "num_bed",
         "limit",
