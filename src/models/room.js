@@ -12,10 +12,6 @@ const Room = sequelize.define("room", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  type: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
   size: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -34,6 +30,10 @@ const Room = sequelize.define("room", {
   },
   active: {
     type: Sequelize.BOOLEAN,
+    allowNull: false,
+  },
+  id_hotel: {
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
 });

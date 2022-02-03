@@ -1,4 +1,5 @@
 const hotelRoutes = require("./src/routes/hotelRoutes");
+const roomRoutes = require("./src/routes/roomRoutes");
 
 const express = require("express");
 const cors = require("cors");
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/api/hotel", hotelRoutes);
+app.use("/api/room", roomRoutes);
 
 // Puerto
 const PORT = 8080;
