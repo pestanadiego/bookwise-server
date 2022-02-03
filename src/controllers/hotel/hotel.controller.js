@@ -92,6 +92,11 @@ const deleteLogicallyHotel = async (req, res) => {
   try {
     let id = req.params.id;
     const hotel = await Hotel.update({ active: false }, { where: { id: id } });
+    const rooms = await Room.update(
+      { active: false },
+      { where: { id_hotel: id } }
+    );
+    console.log(rooms);
     return successResponse(req, res, hotel);
   } catch (error) {
     return errorResponse(req, res, error.message);
