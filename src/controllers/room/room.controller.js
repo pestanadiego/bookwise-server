@@ -5,7 +5,6 @@ const { successResponse, errorResponse } = require("../../helpers/index");
 const createRoom = async (req, res) => {
   try {
     const { name, size, num_bed, limit, quantity, id_hotel } = req.body;
-    console.log(req.body);
     const room = await Room.create({
       name: name,
       size: size,
@@ -91,7 +90,7 @@ const updateRoom = async (req, res) => {
   }
 };
 
-// DELETE (LOGICO) *TO-DO*
+// DELETE (LOGICO)
 const deleteLogicallyRoom = async (req, res) => {
   try {
     let id = req.params.id;

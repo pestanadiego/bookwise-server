@@ -7,7 +7,6 @@ const { successResponse, errorResponse } = require("../../helpers/index");
 const createHotel = async (req, res) => {
   try {
     const { name_hotel, address, manager, rating } = req.body;
-    console.log(req.body);
     const hotel = await Hotel.create({
       name_hotel: name_hotel,
       address: address,
@@ -45,7 +44,6 @@ const getAllHotels = async (req, res) => {
 const getManyHotels = async (req, res) => {
   try {
     const { name_hotel } = req.body;
-    console.log(req.body);
     const hotelName = name_hotel.toLowerCase();
 
     const hotels = await Hotel.findAll({
@@ -88,18 +86,26 @@ const updateHotel = async (req, res) => {
   }
 };
 
-// DELETE (LOGICO) *TO-DO*
+// DELETE (LOGICO)
+
 const deleteLogicallyHotel = async (req, res) => {
+  const deleteTransaction = await sequelize.transaction(); // Transaction
   try {
     let id = req.params.id;
-    const hotel = await Hotel.update({ active: false }, { where: { id: id } });
+    const hotel = await Hotel.update(
+      { active: false },
+      { where: { id: id } },
+      { transaction: deleteTransaction }
+    );
     const rooms = await Room.update(
       { active: false },
-      { where: { id_hotel: id } }
+      { where: { id_hotel: id } },
+      { transaction: deleteTransaction }
     );
-    console.log(rooms);
+    await deleteTransaction.commit(); // Commit
     return successResponse(req, res, hotel);
   } catch (error) {
+    await deleteTransaction.rollback(); // Rollback
     return errorResponse(req, res, error.message);
   }
 };
